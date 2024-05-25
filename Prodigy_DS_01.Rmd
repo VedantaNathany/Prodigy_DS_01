@@ -1,0 +1,105 @@
+---
+title: "Task 1"
+output: html_document
+date: "2024-05-16"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+#TASK 1
+#VEDANTA NATHANY
+
+```{r}
+library(readr)
+population <- read_csv("C:/Users/VEDANTA/Downloads/population.csv")
+View(population)
+```
+
+```{r}
+#BarChart to represent Female population
+#categorical variable = Total Females
+#continuous variable = Total Population 
+
+#loading the "ggplot2" library
+library(ggplot2)
+
+#creating a dataframe "Male_data" to organise males and total population 
+Female_data <- data.frame(Females = population$`Total Females`,Population= population$`Total Population`)
+
+# Creating a bar chart
+ggplot(data=Female_data, aes(x = Females, y = Population))+geom_bar(stat = 'identity',fill="black") +
+labs(title = 'Females Distribution in Total Population',
+x = 'Number of Females', 
+y = 'Total Population' ) +theme(axis.text.x = element_text(angle = 40, hjust = 1), plot.background = element_rect(fill = "lightgrey"),
+                                panel.background = element_rect(fill = "skyblue"))
+```
+
+```{r}
+#BarChart to represent Male population 
+#categorical variable = Total Males
+#continuous variable = Total Population 
+
+#loading the "ggplot2" library
+library(ggplot2)
+
+#creating a dataframe "Male_data" to organise males and total population 
+Male_data <- data.frame(Males = population$`Total Males`,Population= population$`Total Population`)
+
+# Creating a bar chart
+ggplot(data=Male_data, aes(x = Males, y = Population))+geom_bar(stat = 'identity',fill="magenta") +
+labs(title = 'Males Distribution in Total Population',
+x = 'Number of Males', 
+y = 'Total Population' ) +theme(axis.text.x = element_text(angle = 40, hjust = 1), plot.background = element_rect(fill = "grey"),
+                                panel.background = element_rect(fill = "yellow"))
+```
+
+```{r}
+#Histogram to represent median age 
+# Loading the "ggplot2" library
+library(ggplot2)
+
+# Creating data frame "median_data"
+median_data <- data.frame(Age = population$`Median Age`)
+
+# Creating histogram
+ggplot(median_data, aes(x = Age)) +
+  geom_histogram(binwidth = 5, fill = 'orange', color = 'black', boundary = 0) +
+  labs(title = 'Median Age Distribution', x = 'Median Age', y = 'Frequency') +
+  theme_minimal()
+```
+
+```{r}
+#Histogram to represent average household size 
+# Loading the "ggplot2" library
+library(ggplot2)
+
+# Creating data frame "household_data"
+houehold_data <- data.frame(data = population$`Average Household Size`)
+
+# Creating histogram
+ggplot(median_data, aes(x = Age)) +
+  geom_histogram(binwidth = 10, fill = 'yellow', color = 'black', boundary = 0) +
+  labs(title = 'Average Household size Distribution', x = 'Average Household Size', y = 'Frequency') +
+  theme_minimal()
+```
+
+
+
